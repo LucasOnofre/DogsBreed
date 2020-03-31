@@ -1,0 +1,42 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="horizontalMarginDetail">4dp</dimen>
+    <dimen name="horizontalMarginSmall">8dp</dimen>
+    <dimen name="horizontalMargin">16dp</dimen>
+    <dimen name="horizontalMarginLarge">32dp</dimen>
+    <dimen name="verticalMarginDetail">4dp</dimen>
+    <dimen name="verticalMarginSmall">8dp</dimen>
+    <dimen name="verticalMargin">16dp</dimen>
+    <dimen name="verticalMarginLarge">32dp</dimen>
+    <dimen name="verticalMarginXXXLarge">50dp</dimen>
+    <dimen name="horizontalMarginMedium">24dp</dimen>
+
+    <!--SPACING-->
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="big_margin">16dp</dimen>
+    <dimen name="medium_margin">8dp</dimen>
+    <dimen name="medium_padding">8dp</dimen>
+
+    <!--BUTTON-->
+    <dimen name="buttonHeight">50dp</dimen>
+    <dimen name="buttonWidth">50dp</dimen>
+
+    <!--TEXT SIZE-->
+    <dimen name="album_title">16sp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="character_info_text_size">16sp</dimen>
+    <dimen name="character_name_text_size">28sp</dimen>
+    <dimen name="splash_title_size">30sp</dimen>
+
+    <!--CHARACTER ITEM-->
+    <dimen name="character_item_card_elevation">8dp</dimen>
+    <dimen name="character_item_card_radius">4dp</dimen>
+    <dimen name="character_detail_poster_radius">8dp</dimen>
+    <dimen name="poster_height">250dp</dimen>
+    <dimen name="poster_comic_height">500dp</dimen>
+
+    <!--CUSTOM-->
+    <dimen name="character_poster_background_width">200dp</dimen>
+    <dimen name="character_poster_background_height">300dp</dimen>
+
+</resources>
