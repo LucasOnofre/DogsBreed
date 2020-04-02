@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.onoffrice.dogsbreed.R
+import com.onoffrice.dogsbreed.data.local.FeedItem
 import com.onoffrice.dogsbreed.utils.extensions.loadImage
 import kotlinx.android.synthetic.main.feed_item.view.*
 
@@ -14,7 +15,7 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
         fun onClickCharacter(feedView: View)
     }
 
-    var list: List<String> = mutableListOf()
+    var list: List<FeedItem> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -36,8 +37,8 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
 
         val feedItem = list[position]
 
-        feedItem.let { feedUrl ->
-            holder.poster.loadImage(feedUrl)
+        feedItem.let {
+            holder.poster.loadImage(it.imageUrl)
 
             // Feed item click listener
             holder.itemView.setOnClickListener {

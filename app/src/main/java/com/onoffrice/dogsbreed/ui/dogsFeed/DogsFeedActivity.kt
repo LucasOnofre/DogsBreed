@@ -4,22 +4,19 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onoffrice.dogsbreed.R
+import com.onoffrice.dogsbreed.data.local.FeedItem
 import com.onoffrice.dogsbreed.ui.base.BaseActivity
-import com.onoffrice.dogsbreed.utils.AppInjector
 import com.onoffrice.dogsbreed.utils.extensions.setVisible
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
 
-    private val viewModel by lazy {
-        val factory = AppInjector.getDogsFeedViewModel()
-        ViewModelProvider(this, factory).get(DogsFeedViewModel::class.java)
-    }
+    val viewModel: DogsFeedViewModel by viewModel()
 
     private val feedAdapter: FeedAdapter by lazy {
         val adapter = FeedAdapter(object : FeedAdapter.ItemClickListener{
@@ -33,7 +30,6 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
         feedRv.adapter       = adapter
         adapter
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +50,7 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
         }
     }
 
-    private fun displayFeed(feedItems: List<String>) {
+    private fun displayFeed(feedItems: List<FeedItem>) {
         feedAdapter.list = feedItems
     }
 

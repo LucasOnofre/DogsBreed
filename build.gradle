@@ -54,5 +54,8 @@ ext {
     //GLIDE
     glideVersion = '4.10.0'
     glidetransfVersion = '3.1.1'
+
+    //KOIN
+    koinVersion = '2.0.1'
     
 }

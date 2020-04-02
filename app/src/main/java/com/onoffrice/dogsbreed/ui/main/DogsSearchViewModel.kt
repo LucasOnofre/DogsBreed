@@ -34,11 +34,4 @@ class DogsSearchViewModel(private val repository: Repository) : ViewModel() {
         disposable.dispose()
         super.onCleared()
     }
-
-    class Factory(private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            @Suppress("UNCHECKED_CAST")
-            return DogsSearchViewModel(repository) as T
-        }
-    }
 }

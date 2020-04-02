@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.onoffrice.dogsbreed.R
+import com.onoffrice.dogsbreed.data.local.FeedItem
 
 
 fun View.setVisible(visible: Boolean, useInvisible: Boolean = false) {
@@ -67,4 +68,12 @@ fun EditText.afterTextChanged(onTextChanged: ((String) -> Unit)) {
 
         }
     })
+}
+
+fun List<String>.toFeedItemList(): List<FeedItem>? {
+    val feedItemList = mutableListOf<FeedItem>()
+    this.forEach {
+        feedItemList.add(FeedItem(imageUrl = it))
+    }
+    return feedItemList
 }
