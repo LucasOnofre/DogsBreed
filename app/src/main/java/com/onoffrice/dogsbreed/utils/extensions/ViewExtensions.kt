@@ -1,7 +1,10 @@
 package com.onoffrice.dogsbreed.utils.extensions
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -50,4 +53,18 @@ fun View.fadeInItemListAnimation(position: Int, animationDelay: Long) {
     animation.startOffset = (position + firstPositionDelay) * animationDelay
 
     this.animation = animation
+}
+
+fun EditText.afterTextChanged(onTextChanged: ((String) -> Unit)) {
+    addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            onTextChanged(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(query: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
+    })
 }

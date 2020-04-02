@@ -10,10 +10,11 @@
     <string name="action_no">Não</string>
     <string name="action_try_again">Tentar Novamente</string>
 
-    <string name="poster_game_title">Titulo</string>
-    <string name="comic_description">Descrição</string>
-    <string name="comic_price">Preço: %s</string>
-    <string name="btn_most_expensive_text">R$</string>
+    <!--TOOLBAR TITLES-->
+    <string name="toolbar_feed_title">Feed</string>
+
+    <!--ERRORS-->
+    <string name="error_feed">OPS! Houve um erro, tente novamente</string>
 
     <!--NO NETWORK ERRORS-->
     <string name="no_network_connection">Sem conexão com internet</string>

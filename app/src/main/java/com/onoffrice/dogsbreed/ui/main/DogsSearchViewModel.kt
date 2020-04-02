@@ -2,32 +2,23 @@ package com.onoffrice.dogsbreed.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.remote.model.SignupRequest
 import com.onoffrice.dogsbreed.data.repositories.Repository
 import com.onoffrice.dogsbreed.utils.SingleLiveEvent
 import com.onoffrice.dogsbreed.utils.extensions.singleSubscribe
-import com.onoffrice.dogsbreed.utils.extensions.validateEmailPattern
 import io.reactivex.disposables.CompositeDisposable
 
 class DogsSearchViewModel(private val repository: Repository) : ViewModel() {
 
-    val openFeed  =  SingleLiveEvent<Any>()
-    val errorEvent   = SingleLiveEvent<Any>()
+    private val disposable = CompositeDisposable()
+
+    val openFeed     =  SingleLiveEvent<Any>()
+    val errorEvent   = SingleLiveEvent<String>()
     val loadingEvent = SingleLiveEvent<Boolean>()
 
-     private val disposable = CompositeDisposable()
 
-    fun validateEmail(email: String) {
-        if (email.validateEmailPattern()) {
-            makeSignUp(SignupRequest(email))
-        } else {
-            errorEvent.value = R.string.erro_invalid_email
-        }
-    }
-
-    private fun makeSignUp(email: SignupRequest) {
-        disposable.add(repository.makeSignUp(email).singleSubscribe(
+    fun makeSignUp(email: String) {
+        disposable.add(repository.makeSignUp(SignupRequest(email)).singleSubscribe(
                 onLoading = {
                     loadingEvent.value = it
                 },

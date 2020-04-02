@@ -1,9 +1,9 @@
 package com.onoffrice.dogsbreed.data.repositories
 
-
 import com.onoffrice.dogsbreed.NetworkConstants
 import com.onoffrice.dogsbreed.data.local.PreferencesHelper
 import com.onoffrice.dogsbreed.data.remote.interceptors.AddHeaderInterceptor
+import com.onoffrice.dogsbreed.data.remote.model.FeedWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignUpWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignupRequest
 import com.onoffrice.dogsbreed.data.request.RetrofitSingle
@@ -12,7 +12,7 @@ import io.reactivex.Single
 
 interface Repository {
     fun makeSignUp(email: SignupRequest): Single<SignUpWrapper>
-    fun getFeed(): Single<Any>
+    fun getFeed(): Single<FeedWrapper>
 }
 
 class RepositoryImp: Repository {
@@ -29,7 +29,7 @@ class RepositoryImp: Repository {
             PreferencesHelper.token = it.user.token
         }
 
-    override fun getFeed(): Single<Any> = service.getFeed()
+    override fun getFeed(): Single<FeedWrapper> = service.getFeed()
 
 }
 
