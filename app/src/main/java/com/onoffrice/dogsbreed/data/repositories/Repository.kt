@@ -1,6 +1,6 @@
 package com.onoffrice.dogsbreed.data.repositories
 
-import com.onoffrice.dogsbreed.NetworkConstants
+import com.onoffrice.dogsbreed.Constants
 import com.onoffrice.dogsbreed.data.local.PreferencesHelper
 import com.onoffrice.dogsbreed.data.remote.interceptors.AddHeaderInterceptor
 import com.onoffrice.dogsbreed.data.remote.model.FeedWrapper
@@ -18,7 +18,7 @@ interface Repository {
 class RepositoryImp: Repository {
 
     private val service = RetrofitSingle.createService(
-        url             = NetworkConstants.BASE_URL,
+        url             = Constants.BASE_URL,
         serviceClass    = Service::class.java,
         interceptors    = listOf(AddHeaderInterceptor(!PreferencesHelper.token.isNullOrEmpty()))
     )

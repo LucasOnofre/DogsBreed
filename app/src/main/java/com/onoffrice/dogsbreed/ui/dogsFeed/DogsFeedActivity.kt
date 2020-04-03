@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
 import com.onoffrice.dogsbreed.ui.base.BaseActivity
+import com.onoffrice.dogsbreed.utils.extensions.loadImage
 import com.onoffrice.dogsbreed.utils.extensions.setVisible
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.intentFor
@@ -23,13 +24,21 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
 
     private val feedAdapter: FeedAdapter by lazy {
         val adapter = FeedAdapter(object : FeedAdapter.ItemClickListener{
-            override fun onClickCharacter(position: Int) {
-               // handleListClick(position)
+            override fun onClickCharacter(item: FeedItem) {
+                handleListClick(item)
+            }
+
+            override fun removeImage() {
+                handleRemoveImage()
             }
         })
         feedRv.layoutManager = LinearLayoutManager(this)
         feedRv.adapter       = adapter
         adapter
+    }
+
+    private fun handleRemoveImage() {
+        selectedImageDisplay.setVisible(false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +62,9 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun handleListClick(position: Int) {
-        if (::feedList.isInitialized) {
-            feedList.forEach { it.isItemSelected = false }
-            feedList[position].isItemSelected = true
-            feedAdapter.list = feedList
-        }
+    private fun handleListClick(item: FeedItem) {
+        selectedImageDisplay.loadImage(item.imageUrl)
+        selectedImageDisplay.setVisible(true)
     }
 
     private fun setObservers() {

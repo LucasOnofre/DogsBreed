@@ -9,11 +9,14 @@ import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
 import com.onoffrice.dogsbreed.utils.extensions.loadImage
 import kotlinx.android.synthetic.main.feed_item.view.*
+import java.util.*
+
 
 class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapter<FeedAdapter.DogFeedViewHolderItem>() {
 
     interface ItemClickListener {
-        fun onClickCharacter(position: Int)
+        fun onClickCharacter(position: FeedItem)
+        fun removeImage()
     }
 
     var list: List<FeedItem> = mutableListOf()
@@ -35,18 +38,20 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: DogFeedViewHolderItem, position: Int) {
         //holder.itemView.fadeUpItemListAnimation(position,200)
-
+        var wasLong = false;
+        val timer = Timer()
         val feedItem = list[position]
 
         feedItem.let {
             holder.poster.loadImage(it.imageUrl)
             if (it.isItemSelected) {
-                holder.itemView.animation = AnimationUtils.loadAnimation(holder.poster.context, R.anim.zoom_in)
+                holder.itemView.animation =
+                    AnimationUtils.loadAnimation(holder.poster.context, R.anim.zoom_in)
             }
 
             // Feed item click listener
-            holder.itemView.setOnClickListener {
-                listener.onClickCharacter(position)
+            holder.itemView.setOnTouchListener { _, event ->
+
             }
         }
     }
