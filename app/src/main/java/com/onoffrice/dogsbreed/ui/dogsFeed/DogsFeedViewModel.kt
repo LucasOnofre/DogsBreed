@@ -14,12 +14,14 @@ class DogsFeedViewModel(private val repository: Repository) : ViewModel() {
 
     private val disposable = CompositeDisposable()
 
-    val feedItems    = SingleLiveEvent<List<FeedItem>>()
-    val errorEvent   = SingleLiveEvent<Any>()
-    val loadingEvent = SingleLiveEvent<Boolean>()
-    val toolbarTitle = SingleLiveEvent<Any>()
+    val feedItems     = SingleLiveEvent<MutableList<FeedItem>>()
+    val errorEvent    = SingleLiveEvent<Any>()
+    val loadingEvent  = SingleLiveEvent<Boolean>()
+    val toolbarTitle  = SingleLiveEvent<Any>()
+    val selectedBreed = SingleLiveEvent<String>()
 
     fun getFeed(category: String? = null) {
+        selectedBreed.value = category
         disposable.add(repository.getFeed(category).singleSubscribe(
                 onLoading = {
                     loadingEvent.value = it

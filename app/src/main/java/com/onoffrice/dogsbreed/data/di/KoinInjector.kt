@@ -3,6 +3,7 @@ package com.onoffrice.dogsbreed.data.di
 import android.content.Context
 import com.onoffrice.dogsbreed.Constants
 import com.onoffrice.dogsbreed.data.local.PreferencesHelper
+import com.onoffrice.dogsbreed.data.remote.handlers.RxErrorHandlingCallAdapterFactory
 import com.onoffrice.dogsbreed.data.remote.interceptors.AddHeaderInterceptor
 import com.onoffrice.dogsbreed.data.remote.interceptors.NetworkInterceptor
 import com.onoffrice.dogsbreed.data.repositories.Repository
@@ -65,7 +66,7 @@ object KoinInjector {
 
     private fun provideRetrofitBuilder(
             okHttpClient: OkHttpClient,
-            adapterFactory: RxJava2CallAdapterFactory,
+            adapterFactory: RxErrorHandlingCallAdapterFactory,
             converterFactory: GsonConverterFactory
         ): Retrofit.Builder {
             return Retrofit.Builder()
@@ -76,7 +77,7 @@ object KoinInjector {
 
     private fun provideBaseUrl() = Constants.BASE_URL
 
-    private fun providesJavaAdapter(): RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
+    private fun providesJavaAdapter() = RxErrorHandlingCallAdapterFactory()
 
     private fun provideHttpInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

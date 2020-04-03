@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
@@ -26,7 +27,12 @@ fun ImageView.loadImage(url: String?): Boolean {
         val optionsToApply = RequestOptions()
                 .fitCenter()
 
-        Glide.with(context).load(url).apply(optionsToApply).into(this)
+        Glide.with(context)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(R.drawable.placeholder_photo)
+            .apply(optionsToApply)
+            .into(this)
 
     } catch (e: Exception) {
         e.printStackTrace()
@@ -69,7 +75,7 @@ fun EditText.afterTextChanged(onTextChanged: ((String) -> Unit)) {
     })
 }
 
-fun List<String>.toFeedItemList(): List<FeedItem>? {
+fun List<String>.toFeedItemList(): MutableList<FeedItem>? {
     val feedItemList = mutableListOf<FeedItem>()
     this.forEach {
         feedItemList.add(FeedItem(imageUrl = it))

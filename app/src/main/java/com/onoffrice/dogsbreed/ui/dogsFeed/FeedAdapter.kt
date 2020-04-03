@@ -19,8 +19,9 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
         fun removeImage()
     }
 
-    var list: List<FeedItem> = mutableListOf()
+    var list: MutableList<FeedItem> = mutableListOf()
         set(value) {
+            field.clear()
             field = value
             notifyDataSetChanged()
         }

@@ -19,6 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
 
     private lateinit  var feedList: List<FeedItem>
+    private var selectedBreed:String? = null
 
     private val viewModel: DogsFeedViewModel by viewModel()
 
@@ -44,7 +45,14 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setObservers()
+        setListeners()
         viewModel.getFeed()
+    }
+
+    private fun setListeners() {
+        swipeRefresh.setOnRefreshListener {
+            viewModel.getFeed(selectedBreed)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,14 +77,19 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
 
     private fun setObservers() {
         viewModel.run {
-            loadingEvent.observe(this@DogsFeedActivity,Observer { displayLoading(it) })
-            errorEvent.observe(this@DogsFeedActivity,  Observer { displayError(it) })
-            feedItems.observe(this@DogsFeedActivity,   Observer { displayFeed(it) })
-            toolbarTitle.observe(this@DogsFeedActivity,Observer { displayToolbarTitle(it) })
+            loadingEvent.observe(this@DogsFeedActivity,Observer  { displayLoading(it) })
+            errorEvent.observe(this@DogsFeedActivity,  Observer  { displayError(it) })
+            feedItems.observe(this@DogsFeedActivity,   Observer  { displayFeed(it) })
+            toolbarTitle.observe(this@DogsFeedActivity,Observer  { displayToolbarTitle(it) })
+            selectedBreed.observe(this@DogsFeedActivity,Observer { getSelectedBreed(it) })
         }
     }
 
-    private fun displayFeed(feedItems: List<FeedItem>) {
+    private fun getSelectedBreed(breed: String?) {
+        selectedBreed = breed
+    }
+
+    private fun displayFeed(feedItems: MutableList<FeedItem>) {
         feedList = feedItems
         feedAdapter.list = feedItems
     }
@@ -96,7 +109,7 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
     }
 
     private fun displayLoading(loading: Boolean) {
-        progressBar.setVisible(loading)
+        swipeRefresh.isRefreshing = loading
     }
 }
 fun Context.createDogsFeedIntent() = intentFor<DogsFeedActivity>()

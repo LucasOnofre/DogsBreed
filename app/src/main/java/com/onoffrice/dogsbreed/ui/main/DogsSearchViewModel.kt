@@ -11,7 +11,7 @@ class DogsSearchViewModel(private val repository: Repository) : ViewModel() {
 
     private val disposable = CompositeDisposable()
 
-    val openFeed     =  SingleLiveEvent<Any>()
+    val openFeed     =  SingleLiveEvent<Void>()
     val errorEvent   = SingleLiveEvent<String>()
     val loadingEvent = SingleLiveEvent<Boolean>()
 

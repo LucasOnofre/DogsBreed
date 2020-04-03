@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.ui.base.BaseActivity
 import com.onoffrice.dogsbreed.ui.dogsFeed.createDogsFeedIntent
+import com.onoffrice.dogsbreed.utils.extensions.setVisible
 import com.onoffrice.dogsbreed.utils.extensions.startActivitySlideTransition
 import com.onoffrice.dogsbreed.utils.extensions.validateEmailPattern
 import kotlinx.android.synthetic.main.activity_dogs_search.*
@@ -51,7 +52,7 @@ class DogsSearchActivity : BaseActivity(R.layout.activity_dogs_search) {
     }
 
     private fun displayLoading(loading: Boolean) {
-        mainRefresh.isRefreshing = loading
+        progressBar.setVisible(loading)
     }
 
     private fun displayError(message: String) {
