@@ -1,7 +1,6 @@
 package com.onoffrice.dogsbreed.ui.main
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.onoffrice.dogsbreed.data.remote.model.SignupRequest
 import com.onoffrice.dogsbreed.data.repositories.Repository
 import com.onoffrice.dogsbreed.utils.SingleLiveEvent

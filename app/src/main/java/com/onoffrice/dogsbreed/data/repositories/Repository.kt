@@ -12,7 +12,7 @@ import io.reactivex.Single
 
 interface Repository {
     fun makeSignUp(email: SignupRequest): Single<SignUpWrapper>
-    fun getFeed(): Single<FeedWrapper>
+    fun getFeed(category: String?): Single<FeedWrapper>
 }
 
 class RepositoryImp: Repository {
@@ -29,7 +29,7 @@ class RepositoryImp: Repository {
             PreferencesHelper.token = it.user.token
         }
 
-    override fun getFeed(): Single<FeedWrapper> = service.getFeed()
+    override fun getFeed(category: String?): Single<FeedWrapper> = service.getFeed(category?.toLowerCase())
 
 }
 

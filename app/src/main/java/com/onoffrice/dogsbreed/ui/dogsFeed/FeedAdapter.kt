@@ -3,6 +3,7 @@ package com.onoffrice.dogsbreed.ui.dogsFeed
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.feed_item.view.*
 class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapter<FeedAdapter.DogFeedViewHolderItem>() {
 
     interface ItemClickListener {
-        fun onClickCharacter(feedView: View)
+        fun onClickCharacter(position: Int)
     }
 
     var list: List<FeedItem> = mutableListOf()
@@ -39,10 +40,13 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
 
         feedItem.let {
             holder.poster.loadImage(it.imageUrl)
+            if (it.isItemSelected) {
+                holder.itemView.animation = AnimationUtils.loadAnimation(holder.poster.context, R.anim.zoom_in)
+            }
 
             // Feed item click listener
             holder.itemView.setOnClickListener {
-                listener.onClickCharacter(holder.itemView)
+                listener.onClickCharacter(position)
             }
         }
     }

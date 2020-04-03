@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_husky"
+        android:enabled="true"
+        android:title="@string/menu_item_husky" />
+
+    <item
+        android:id="@+id/action_hound"
+        android:enabled="true"
+        android:title="@string/menu_item_hound" />
+
+    <item
+        android:id="@+id/action_pug"
+        android:enabled="true"
+        android:title="@string/menu_item_pug" />
+
+    <item
+        android:id="@+id/action_labrador"
+        android:enabled="true"
+        android:title="@string/menu_item_labrador" />
+</menu>

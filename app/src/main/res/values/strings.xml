@@ -13,6 +13,12 @@
     <!--TOOLBAR TITLES-->
     <string name="toolbar_feed_title">Feed</string>
 
+    <!--MENU ITEMS-->
+    <string name="menu_item_husky">Husky</string>
+    <string name="menu_item_hound">Hound</string>
+    <string name="menu_item_pug">Pug</string>
+    <string name="menu_item_labrador">Labrador</string>
+
     <!--ERRORS-->
     <string name="error_feed">OPS! Houve um erro, tente novamente</string>
 

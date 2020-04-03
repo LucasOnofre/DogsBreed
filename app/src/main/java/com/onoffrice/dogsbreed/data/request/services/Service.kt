@@ -4,9 +4,7 @@ import com.onoffrice.dogsbreed.data.remote.model.FeedWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignUpWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignupRequest
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Service {
 
@@ -14,6 +12,6 @@ interface Service {
     fun makeSignUp(@Body email: SignupRequest): Single<SignUpWrapper>
 
     @GET("feed")
-   fun getFeed(): Single<FeedWrapper>
+   fun getFeed(@Query("category") category: String?): Single<FeedWrapper>
 
 }

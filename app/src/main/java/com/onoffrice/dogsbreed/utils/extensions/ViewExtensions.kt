@@ -24,7 +24,6 @@ fun View.setVisible(visible: Boolean, useInvisible: Boolean = false) {
 fun ImageView.loadImage(url: String?): Boolean {
     try {
         val optionsToApply = RequestOptions()
-                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder_photo))
                 .fitCenter()
 
         Glide.with(context).load(url).apply(optionsToApply).into(this)

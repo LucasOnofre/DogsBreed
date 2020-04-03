@@ -17,9 +17,10 @@ class DogsFeedViewModel(private val repository: Repository) : ViewModel() {
     val feedItems    = SingleLiveEvent<List<FeedItem>>()
     val errorEvent   = SingleLiveEvent<Any>()
     val loadingEvent = SingleLiveEvent<Boolean>()
+    val toolbarTitle = SingleLiveEvent<Any>()
 
-    fun getFeed() {
-        disposable.add(repository.getFeed().singleSubscribe(
+    fun getFeed(category: String? = null) {
+        disposable.add(repository.getFeed(category).singleSubscribe(
                 onLoading = {
                     loadingEvent.value = it
                 },
@@ -31,11 +32,25 @@ class DogsFeedViewModel(private val repository: Repository) : ViewModel() {
                 }))
     }
 
-    private fun handleFeedResponse(feedResponse: FeedWrapper) {
-        if (!feedResponse.dogsFeedList.isNullOrEmpty()) {
-            feedItems.value = feedResponse.dogsFeedList.toFeedItemList()
+    private fun handleFeedResponse(feedResponse: FeedWrapper?) {
+        checkCategory(feedResponse)
+
+        checkFeedList(feedResponse)
+    }
+
+    private fun checkFeedList(feedResponse: FeedWrapper?) {
+        if (!feedResponse?.dogsFeedList.isNullOrEmpty()) {
+            feedItems.value = feedResponse?.dogsFeedList!!.toFeedItemList()
         } else {
             errorEvent.value = R.string.error_feed
+        }
+    }
+
+    private fun checkCategory(feedResponse: FeedWrapper?) {
+        if (feedResponse?.category.isNullOrEmpty()) {
+            toolbarTitle.value = R.string.toolbar_feed_title
+        } else {
+            toolbarTitle.value = feedResponse!!.category.capitalize()
         }
     }
 
