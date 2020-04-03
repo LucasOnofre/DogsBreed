@@ -50,9 +50,9 @@ class FeedAdapter (private val listener: ItemClickListener): RecyclerView.Adapte
             }
 
             // Feed item click listener
-            holder.itemView.setOnTouchListener { _, event ->
-
-            }
+//            holder.itemView.setOnTouchListener { _, event ->
+//
+//            }
         }
     }
 

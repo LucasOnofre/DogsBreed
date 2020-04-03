@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DogsSearchActivity : BaseActivity(R.layout.activity_dogs_search) {
 
-    val viewModel: DogsSearchViewModel by viewModel()
+    private val viewModel: DogsSearchViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

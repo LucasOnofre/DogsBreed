@@ -26,7 +26,8 @@ class BaseApplication : MultiDexApplication() {
             modules(
                 listOf(
                     KoinInjector.dogSearchModule,
-                    KoinInjector.feedModule
+                    KoinInjector.feedModule,
+                    KoinInjector.networkModule
                 )
             )
         }
