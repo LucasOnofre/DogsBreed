@@ -26,19 +26,13 @@
     <!--TEXT SIZE-->
     <dimen name="album_title">16sp</dimen>
     <dimen name="button_text_size">16sp</dimen>
-    <dimen name="character_info_text_size">16sp</dimen>
-    <dimen name="character_name_text_size">28sp</dimen>
     <dimen name="splash_title_size">30sp</dimen>
 
-    <!--CHARACTER ITEM-->
-    <dimen name="character_item_card_elevation">8dp</dimen>
-    <dimen name="character_item_card_radius">4dp</dimen>
-    <dimen name="character_detail_poster_radius">8dp</dimen>
-    <dimen name="poster_height">350dp</dimen>
-    <dimen name="poster_comic_height">500dp</dimen>
-
-    <!--CUSTOM-->
-    <dimen name="character_poster_background_width">200dp</dimen>
-    <dimen name="character_poster_background_height">300dp</dimen>
+    <!-- CUSTOM-->
+    <dimen name="item_card_elevation">8dp</dimen>
+    <dimen name="item_card_radius">4dp</dimen>
+    <dimen name="detail_poster_radius">8dp</dimen>
+    <dimen name="poster_height">320dp</dimen>
+    <dimen name="image_preview_size">300dp</dimen>
 
 </resources>

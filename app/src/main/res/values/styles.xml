@@ -9,5 +9,9 @@
         <item name="android:textColorSecondary">@color/colorWhite</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/anim_open_scale</item>
+        <item name="android:windowExitAnimation">@anim/anim_close_scale</item>
+    </style>
 
 </resources>

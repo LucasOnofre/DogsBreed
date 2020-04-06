@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
 import com.onoffrice.dogsbreed.ui.base.BaseActivity
-import com.onoffrice.dogsbreed.utils.extensions.loadImage
-import com.onoffrice.dogsbreed.utils.extensions.setVisible
+import com.onoffrice.dogsbreed.utils.helpers.ImageModal
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
@@ -18,7 +17,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
 
-    private lateinit  var feedList: List<FeedItem>
+    private lateinit var feedList: List<FeedItem>
+    private lateinit var imageModal: ImageModal
+
     private var selectedBreed:String? = null
 
     private val viewModel: DogsFeedViewModel by viewModel()
@@ -28,18 +29,10 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
             override fun onClickCharacter(item: FeedItem) {
                 handleListClick(item)
             }
-
-            override fun removeImage() {
-                handleRemoveImage()
-            }
         })
         feedRv.layoutManager = LinearLayoutManager(this)
         feedRv.adapter       = adapter
         adapter
-    }
-
-    private fun handleRemoveImage() {
-        selectedImageDisplay.setVisible(false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,8 +64,11 @@ class DogsFeedActivity : BaseActivity(R.layout.activity_feed) {
     }
 
     private fun handleListClick(item: FeedItem) {
-        selectedImageDisplay.loadImage(item.imageUrl)
-        selectedImageDisplay.setVisible(true)
+        if (!item.imageUrl.isNullOrEmpty()){
+            imageModal = ImageModal(this, item.imageUrl!!)
+            imageModal.setCancelable(true)
+            imageModal.show()
+        }
     }
 
     private fun setObservers() {
