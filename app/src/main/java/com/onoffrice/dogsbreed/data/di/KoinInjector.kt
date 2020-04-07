@@ -18,7 +18,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object KoinInjector {
@@ -35,7 +34,7 @@ object KoinInjector {
     val networkModule = module {
         single { providesConverter() }
         single { providesJavaAdapter() }
-        single { provideOkHttp(interceptors = provideAllInterceptors(get())) }
+        single { provideOkHttp(interceptors = provideAllInterceptors(context = get())) }
         single { provideRetrofitBuilder(okHttpClient = get(), adapterFactory = get(), converterFactory = get()) }
         single { provideService(retrofit = get(), baseUrl = provideBaseUrl()) }
     }
@@ -46,7 +45,7 @@ object KoinInjector {
 
     private fun provideAllInterceptors(context: Context) =
             listOf(
-                provideHttpInterceptor(),
+                provideLoggingInterceptor(),
                 provideNetworkConnection(context),
                 provideHeaderInterceptor()
             )
@@ -79,7 +78,7 @@ object KoinInjector {
 
     private fun providesJavaAdapter() = RxErrorHandlingCallAdapterFactory()
 
-    private fun provideHttpInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
+    private fun provideLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
