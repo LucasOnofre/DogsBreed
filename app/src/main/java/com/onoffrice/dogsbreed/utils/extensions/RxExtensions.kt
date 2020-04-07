@@ -1,6 +1,7 @@
 package com.onoffrice.dogsbreed.utils.extensions
 
-import io.reactivex.*
+import io.reactivex.Scheduler
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers

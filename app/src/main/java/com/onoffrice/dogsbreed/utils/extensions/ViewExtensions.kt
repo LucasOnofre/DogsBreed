@@ -1,9 +1,7 @@
 package com.onoffrice.dogsbreed.utils.extensions
 
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
@@ -13,7 +11,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.onoffrice.dogsbreed.R
 import com.onoffrice.dogsbreed.data.local.FeedItem
-import com.onoffrice.dogsbreed.ui.dogsFeed.FeedAdapter
 
 
 fun View.setVisible(visible: Boolean, useInvisible: Boolean = false) {

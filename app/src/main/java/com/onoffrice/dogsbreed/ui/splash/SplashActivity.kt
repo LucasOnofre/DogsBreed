@@ -29,10 +29,11 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setLogoAnimation() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.logo_transition)
-        animation.repeatCount    = 1
-        animation.duration       = 2000
-        animation.fillAfter      = true
-        animation.repeatMode     = Animation.REVERSE
-        splash_logo.startAnimation(animation)
+        animation.apply {
+            this.repeatCount    = 1
+            this.duration       = 2000
+            this.fillAfter      = true
+            this.repeatMode     = Animation.REVERSE
+        }.also { splash_logo.startAnimation(animation) }
     }
 }

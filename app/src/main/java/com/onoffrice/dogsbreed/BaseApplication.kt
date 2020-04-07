@@ -1,9 +1,9 @@
 package com.onoffrice.dogsbreed
 
 import androidx.multidex.MultiDexApplication
-import com.onoffrice.dogsbreed.data.di.KoinInjector
+import com.onoffrice.dogsbreed.data.di.NetworkModulesInjector
+import com.onoffrice.dogsbreed.data.di.ViewModulesInjector
 import com.onoffrice.dogsbreed.data.local.PreferencesHelper
-import com.onoffrice.dogsbreed.data.remote.RemotePreferencesHelper
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,9 +25,9 @@ class BaseApplication : MultiDexApplication() {
 
             modules(
                 listOf(
-                    KoinInjector.dogSearchModule,
-                    KoinInjector.feedModule,
-                    KoinInjector.networkModule
+                    ViewModulesInjector.dogSearchModule,
+                    ViewModulesInjector.feedModule,
+                    NetworkModulesInjector.networkModule
                 )
             )
         }
@@ -36,6 +36,5 @@ class BaseApplication : MultiDexApplication() {
 
     private fun setPreferencesHelper() {
         PreferencesHelper.init(applicationContext)
-        RemotePreferencesHelper.init(applicationContext)
     }
 }

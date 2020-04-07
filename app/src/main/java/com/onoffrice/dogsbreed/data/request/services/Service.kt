@@ -4,7 +4,10 @@ import com.onoffrice.dogsbreed.data.remote.model.FeedWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignUpWrapper
 import com.onoffrice.dogsbreed.data.remote.model.SignupRequest
 import io.reactivex.Single
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface Service {
 
